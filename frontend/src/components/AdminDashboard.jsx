@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   const [answer, setAnswer] = useState('');
   const [editingId, setEditingId] = useState(null);
 
-  // Fetch flashcards from the backend
+
   useEffect(() => {
     axios.get('http://localhost:5000/api/flashcards')
       .then(response => {
@@ -18,7 +18,6 @@ const AdminDashboard = () => {
       });
   }, []);
 
-  // Add a new flashcard
   const addFlashcard = () => {
     if (!question || !answer) {
       alert('Question and answer are required.');
@@ -35,7 +34,6 @@ const AdminDashboard = () => {
       });
   };
 
-  // Edit an existing flashcard
   const editFlashcard = id => {
     setEditingId(id);
     const card = flashcards.find(card => card.id === id);
@@ -45,7 +43,6 @@ const AdminDashboard = () => {
     }
   };
 
-  // Update an existing flashcard
   const updateFlashcard = () => {
     if (!question || !answer) {
       alert('Question and answer are required.');
@@ -63,7 +60,6 @@ const AdminDashboard = () => {
       });
   };
 
-  // Delete a flashcard
   const deleteFlashcard = id => {
     axios.delete(`http://localhost:5000/api/flashcards/${id}`)
       .then(() => {

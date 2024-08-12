@@ -5,23 +5,22 @@ import AddFlashcard from './components/AddFlashcard';
 function App() {
   const [flashcards, setFlashcards] = useState([]);
 
-  // Fetch flashcards from the backend API
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost:5000/api/flashcards'); // Make sure this URL matches your backend endpoint
+        const response = await fetch('http://localhost:5000/api/flashcards'); 
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setFlashcards(data); // Update state with fetched flashcards
+        setFlashcards(data);
       } catch (error) {
         console.error('Fetch error:', error);
       }
     }
 
     fetchData();
-  }, []); // Empty dependency array ensures this runs once when the component mounts
+  }, []); 
 
   const addFlashcard = (question, answer) => {
     setFlashcards([...flashcards, { question, answer }]);

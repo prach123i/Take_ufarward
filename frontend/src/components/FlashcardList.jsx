@@ -1,5 +1,5 @@
 import React from 'react';
-import FlashcardComponent from './FlashcardComponent'; // Ensure this path is correct
+import FlashcardComponent from './FlashcardComponent';
 
 const FlashcardList = ({ flashcards }) => {
   return (

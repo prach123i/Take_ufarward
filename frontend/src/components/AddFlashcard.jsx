@@ -7,12 +7,11 @@ const AddFlashcardForm = () => {
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();  // Prevent default form submission
-    console.log('Submitting form with:', { question, answer });  // Debugging line
+    e.preventDefault();  
+    console.log('Submitting form with:', { question, answer });  
     try {
       const response = await axios.post('/api/flashcards', { question, answer });
       console.log('Flashcard added:', response.data);
-      // Optionally clear form or update UI
     } catch (error) {
       console.error('Error adding flashcard:', error.response || error.message || error);
       setError('Failed to add flashcard. Please try again.');

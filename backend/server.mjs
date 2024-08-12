@@ -9,12 +9,12 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Middleware
+
 app.use(bodyParser.json());
 app.use(cors());
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with your frontend URL
+  origin: 'http://localhost:5000', 
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type',
 };
@@ -22,10 +22,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// Serve static files from the 'frontend/dist' directory
 app.use(express.static(join(__dirname, '../frontend/dist')));
 
-// MySQL Database Connection
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -38,7 +36,6 @@ db.connect(err => {
   console.log('MySQL Connected...');
 });
 
-// API routes
 app.get('/api/flashcards', (req, res) => {
   db.query('SELECT * FROM flashcards', (err, results) => {
     if (err) {
@@ -90,7 +87,6 @@ app.delete('/api/flashcards/:idflashcards', (req, res) => {
   });
 });
 
-// Serve the frontend application
 app.get('*', (req, res) => {
   res.sendFile(join(__dirname, '../frontend/dist', 'index.html'));
 });

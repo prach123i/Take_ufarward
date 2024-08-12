@@ -7,17 +7,14 @@ const FlashcardsContainer = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch flashcards data from the API
         axios.get('/api/flashcards')
             .then(response => {
-                console.log('Raw data from server:', response.data);  // Debugging line
+                console.log('Raw data from server:', response.data);  
                 const data = response.data;
 
-                // Validate the data
                 const validFlashcards = data.filter(flashcard => flashcard && flashcard.question);
-                console.log('Valid flashcards:', validFlashcards);  // Debugging line
+                console.log('Valid flashcards:', validFlashcards);  
 
-                // Update state with validated flashcards
                 setFlashcards(validFlashcards);
             })
             .catch(error => {
